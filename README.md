@@ -5,7 +5,7 @@ Network-based assessment of HDAC6 activity is highly predictive of pre-clinical 
 We made a comprehensive collection of breast cancer transcriptomics data of cell lines, mouse models and primary patients from five sources. We introduced normalization (if not done yet), quality assessment and removed the non-informative genes and outlier samples, if any. The expression set (eset) file was created for each of them, and were used for subsequent analysis.
 * See scripts: 01.Transcriptomics_data_collection_and_processing/esetGeneration_\*.R
 
-## RNAseq_analysis_of_the_clinical_trial
+## RNAseq analysis of the clinical trial
 We employed the RNA-SEQ/RiboZero strategy to profile the gene expression patterns of 11 FFPE biopsy samples from 10 ductal breast cancer patients who were treated with the HDAC6 inhibitor ricolinostat. We first trimmed the adpters and low-quality sequences from the raw FastQ data. We then used Salmon to perform the trancriptome quantification analysis. We normalized the libraries by calculating the CPM, and evaluated the quality of the data. Batch effect was observed and removed. Expressoin set file was generated for subsequent analysis.
 * See scripts: 02.RNAseq_analysis_of_the_clinical_trial/01_quantBySalmon.sh and 02_esetGeneration.R
 
