@@ -1,14 +1,14 @@
-## To calculate the HDAC6 score of clinical trial dataset
+## To calculate the HDAC6 score of cell lines
 ## Coded by Qingfei Pan (Qingfei.Pan@stjude.org)
 ## R-3.6
 
 ## 0. configuration
 library(NetBID2)
-setwd("./DATA/ClinicalTrial")
+setwd("./DATA/CCLE")
 
 ## 1. load the eset
-load("ClinicalTrial.log2CP50M.genelevel.afterBatchEffectRemoval.eset")
-eset <- ClinicalTrial.log2CP50M.genelevel.afterBatchEffectRemoval.eset; rm(ClinicalTrial.log2CP50M.genelevel.afterBatchEffectRemoval.eset)
+load("CCLE_RNASeq.log2TPM_geneLevel.breast.eset")
+eset <- CCLE_RNASeq.log2TPM_geneLevel.breast.eset; rm(CCLE_RNASeq.log2TPM_geneLevel.breast.eset)
 
 ## 2. read the regulon
 regulon.file <- read.table("./HDAC6_Breast_Cancer_Regulon.txt", header = F, sep = "\t", stringsAsFactors = F)
@@ -33,6 +33,6 @@ hdac6score$HDAC6regulon <- std(hdac6score$HDAC6regulon)
 d <- t(hdac6score)
 pd <- pData(eset)[colnames(d),]
 fd <- data.frame(row.names = row.names(d), Regulon = row.names(d))
-eset.act <- generate.eset(exp_mat = d, phenotype_info = pd, feature_info = fd, annotation_info = 'RNASeqRibo0, Salmon, GeneLevel, Activity')
-ClinicalTrial.activity.afterBatchEffectRemoval.eset <- eset.act
-save(ClinicalTrial.activity.afterBatchEffectRemoval.eset, file = "ClinicalTrial.activity.afterBatchEffectRemoval.eset")
+eset.act <- generate.eset(exp_mat = d, phenotype_info = pd, feature_info = fd, annotation_info = 'CCLE, GeneLevel, Activity')
+CCLE_BRCA.activity.eset <- eset.act
+save(CCLE_BRCA.activity.eset, file = "CCLE_BRCA.activity.eset")
