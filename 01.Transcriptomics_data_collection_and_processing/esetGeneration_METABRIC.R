@@ -1,4 +1,4 @@
-## To prepared the gene expression profiles of METABRIC samples
+## To prepare the gene expression profiles of METABRIC samples
 ## Coded by Qingfei Pan (Qingfei.Pan@stjude.org)
 ## R-3.6
 
@@ -6,7 +6,7 @@
 require(openxlsx)
 require(NetBID2)
 require(Biobase)
-setwd("/Users/qpan/Desktop/HDAC6Manuscript/CodesAndData/DATA/METABRIC")
+setwd("./DATA/METABRIC")
 
 ## 1. Input the Rdata
 load("brca_metabric_source.Rdata") # Downloaded from cBioPortal
@@ -59,11 +59,10 @@ pd <- pd[, c(cols.top, colnames(pd)[!colnames(pd)%in%cols.top])]
 
 ## 4. Prepare eset
 eset <- new("ExpressionSet", phenoData = new("AnnotatedDataFrame", pd), featureData=new("AnnotatedDataFrame", fd), annotation='MicroArray', exprs=as.matrix(exp))
-dim(eset)
 METABRIC_microArray.BRCA.log2Intensity_geneLevel.eset <- eset
 save(METABRIC_microArray.BRCA.log2Intensity_geneLevel.eset, file = "METABRIC_microArray.BRCA.log2Intensity_geneLevel.eset")
 
-draw.eset.QC(METABRIC_microArray.BRCA.log2Intensity_geneLevel.eset, outdir = dir.qc, do.logtransform = FALSE, prefix = 'METABRIC_microArray.BRCA.log2Intensity_geneLevel.',
+draw.eset.QC(METABRIC_microArray.BRCA.log2Intensity_geneLevel.eset, outdir = "./", do.logtransform = FALSE, prefix = 'METABRIC_microArray.BRCA.log2Intensity_geneLevel.',
              intgroup = NULL, choose_plot = c("heatmap", "pca", "density", "correlation", "meansd"), generate_html = TRUE, correlation_strategy = "pearson", plot_all_point = FALSE,
              emb_plot_type='2D.ellipse' # "2D", "2D.interactive", "2D.ellipse", "2D.text" or "3D" 
 )

@@ -1,4 +1,4 @@
-## To prepared the gene expression profiles of GEMM from PMID: 24220145
+## To prepare the gene expression profiles of GEMM from PMID: 24220145
 ## Coded by Qingfei Pan (Qingfei.Pan@stjude.org)
 ## R-3.6
 
@@ -7,7 +7,7 @@ require(openxlsx)
 require(GEOquery)
 require(Biobase)
 require(NetBID2)
-setwd("/Users/qpan/Desktop/HDAC6Manuscript/CodesAndData/DATA/GEMM")
+setwd("./DATA/GEMM")
 
 ## 1. Prepare the raw pd
 # get the sample information
@@ -19,7 +19,7 @@ pd <- data.frame(row.names = sampleInfo$GEO.Number, GEO.Number = sampleInfo$GEO.
 
 ## 2. Prepare the raw exp
 # Download data from GEO
-dir.create("GSE3165"); gse42640 <- getGEO("GSE42640", GSEMatrix =TRUE, getGPL=TRUE, destdir = "GSE42640")
+dir.create("GSE42640"); gse42640 <- getGEO("GSE42640", GSEMatrix =TRUE, getGPL=TRUE, destdir = "GSE42640")
 dir.create("GSE3165"); gse3165 <- getGEO("GSE3165", GSEMatrix =TRUE, getGPL=TRUE, destdir = "GSE3165")
 dir.create("GSE8516"); gse8516 <- getGEO("GSE8516", GSEMatrix =TRUE, getGPL=TRUE, destdir = "GSE8516")
 dir.create("GSE9343"); gse9343 <- getGEO("GSE9343", GSEMatrix =TRUE, getGPL=TRUE, destdir = "GSE9343")
@@ -137,14 +137,14 @@ table(is.na(exp))
 GEMM_microArray.probeLevel.eset <- new("ExpressionSet", phenoData = new("AnnotatedDataFrame", pd), featureData = new("AnnotatedDataFrame", fd), annotation='Mouse Model MicroArray', exprs = as.matrix(exp))
 save(GEMM_microArray.probeLevel.eset, file = "GEMM_microArray.probeLevel.eset")
 
-draw.eset.QC(GEMM_microArray.probeLevel.eset, outdir = dir.qc, do.logtransform = FALSE, prefix = 'GEMM_microArray.probeLevel.',
+draw.eset.QC(GEMM_microArray.probeLevel.eset, outdir = "./", do.logtransform = FALSE, prefix = 'GEMM_microArray.probeLevel.',
              intgroup = NULL, choose_plot = c("heatmap", "pca", "density", "correlation", "meansd"), generate_html = TRUE, correlation_strategy = "pearson", plot_all_point = FALSE,
              emb_plot_type='2D.ellipse' # "2D", "2D.interactive", "2D.ellipse", "2D.text" or "3D" 
 )
 
 
 ## 7. eset of genes
-eset <- GEMM_microArray.probeLevel.14474_385.eset; rm(GEMM_microArray.probeLevel.14474_385.eset)
+eset <- GEMM_microArray.probeLevel.eset; rm(GEMM_microArray.probeLevel.eset)
 fd.tmp <- data.frame(row.names = fd$Agilent_probe_name, geneSymbol = fd$`Gene Symbol`)
 exp.gene <- merge(fd.tmp, exp, by = "row.names")
 for (i in 1:nrow(exp.gene)) { exp.gene$Row.names[i] <- unlist(strsplit(as.character(exp.gene$geneSymbol[i]), "\\|"))[1] }
@@ -157,10 +157,10 @@ dim(exp.gene)
 fd.gene <- data.frame(row.names = row.names(exp.gene), geneSymbol = row.names(exp.gene))
 pd.gene <- pData(eset)[colnames(exp.gene),]
 
-GEMM_microArray.geneLevel.8538_385.eset <- new("ExpressionSet", phenoData = new("AnnotatedDataFrame", pd.gene), featureData=new("AnnotatedDataFrame", fd.gene), annotation='Mouse Model MicroArray', exprs=as.matrix(exp.gene))
-save(GEMM_microArray.geneLevel.8538_385.eset, file = "GEMM_microArray.geneLevel.8538_385.eset")
+GEMM_microArray.geneLevel.eset <- new("ExpressionSet", phenoData = new("AnnotatedDataFrame", pd.gene), featureData=new("AnnotatedDataFrame", fd.gene), annotation='Mouse Model MicroArray', exprs=as.matrix(exp.gene))
+save(GEMM_microArray.geneLevel.eset, file = "GEMM_microArray.geneLevel.eset")
 
-draw.eset.QC(GEMM_microArray.geneLevel.eset, outdir = dir.qc, do.logtransform = FALSE, prefix = 'GEMM_microArray.geneLevel.',
+draw.eset.QC(GEMM_microArray.geneLevel.eset, outdir = "./", do.logtransform = FALSE, prefix = 'GEMM_microArray.geneLevel.',
              intgroup = NULL, choose_plot = c("heatmap", "pca", "density", "correlation", "meansd"), generate_html = TRUE, correlation_strategy = "pearson", plot_all_point = FALSE,
              emb_plot_type='2D.ellipse' # "2D", "2D.interactive", "2D.ellipse", "2D.text" or "3D" 
 )
