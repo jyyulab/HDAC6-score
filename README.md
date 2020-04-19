@@ -27,7 +27,7 @@ We used the gene level expression data to calculate the HDAC6 score with the fun
 * See scripts: 06.HDAC6_score_inference_by_NetBID/\*.R
 
 ## HDAC6 score inference by VIPER
-We evaluated the HDAC6 relative protein activity based on the new HDAC6 breast cancer regulon with the VIPER algorithm, a powerful tool which has been aproved by the NYS Department of Health CLIA/CLEP Validatioin Unit. The VIPER-based HDAC6 score ROC analysis was performed by DarwinHealth Inc.
+We evaluated the HDAC6 relative protein activity based on the new HDAC6 breast cancer regulon with the VIPER algorithm, a powerful tool which has been aproved by the NYS Department of Health CLIA/CLEP Validatioin Unit. The VIPER-based HDAC6 score ROC analysis was performed by Darwin Health Inc (https://www.darwinhealth.com/).
 
 ## Correlative analysis of HDAC6 score in breast cancer cell lines
 We used ggplot2 to draw the correlaton scatter plot and do the curve fitting between HDAC6 and IC50 among cell lines.
