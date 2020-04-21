@@ -2,15 +2,15 @@
 Network-based assessment of HDAC6 activity is highly predictive of pre-clinical and clinical response to the HDAC6 inhibitor
 
 ## Transcriptomics data collection and processing
-We made a comprehensive collection of breast cancer transcriptomics data of cell lines, mouse models and primary patients from five sources. We introduced normalization (if not done yet), quality assessment and removed the non-informative genes and outlier samples, if any. The expression set (eset) file was created for each of them, and were used for subsequent analysis.
+We made a comprehensive collection of breast cancer transcriptomics data of cell lines, mouse models and primary patients from five sources. We introduced normalization (if not done yet), quality assessment and removed the non-informative genes and outlier samples, if any. The expression set (eset) file was created for each of them and used for subsequent analysis.
 * See scripts: 01.Transcriptomics_data_collection_and_processing/esetGeneration_\*.R
 
 ## RNAseq analysis of the clinical trial
-We employed the RNA-SEQ/RiboZero strategy to profile the gene expression patterns of 11 FFPE biopsy samples from 10 ductal breast cancer patients who were treated with the HDAC6 inhibitor ricolinostat. We first trimmed the adpters and low-quality sequences from the raw FastQ data. We then used Salmon to perform the trancriptome quantification analysis. We normalized the libraries by calculating the CPM, and evaluated the quality of the data. Batch effect was observed and removed. Expressoin set file was generated for subsequent analysis.
+We employed the RNA-SEQ/RiboZero strategy to profile the gene expression patterns of 11 FFPE biopsy samples from 10 ductal breast cancer patients who were treated with the HDAC6 inhibitor ricolinostat. We first trimmed the adapters and low-quality sequences from the raw FastQ data. We then used Salmon to perform the transcriptome quantification analysis. We normalized the libraries by calculating the CPM, and evaluated the quality of the data. Batch effect was observed and removed. The expression set file was generated for subsequent analysis.
 * See scripts: 02.RNAseq_analysis_of_the_clinical_trial/01_quantBySalmon.sh and 02_esetGeneration.R
 
 ## Integration of human breast cancer transcriptomics data from different sources
-In order to evalue the performance of HDAC6 regulon, we merged the gene expression profiles of four human breast cancer datasets, including TCGA, METABRIC, IBC, and RNA-seq data from our clinical trial, by keeping the genes shared across all four datasets. Batch effects were removed by limma.
+In order to evaluate the performance of HDAC6 regulon, we merged the gene expression profiles of four human breast cancer datasets, including TCGA, METABRIC, IBC, and RNA-seq data from our clinical trial, by keeping the genes shared across all four datasets. Batch effects were removed by limma.
 * See script: 03.Integration_of_human_breast_cancer_transcriptomics_data_from_different_sources.R
 
 ## Next-generation HDAC6 breast cancer regulon inference
@@ -23,18 +23,18 @@ We used the SJARACNe to generate the cancer type-specific regulons of 32 human p
 * See scripts: 05.HDAC6_cancer_type_specific_regulon_inference/\*R and \*.sh
 
 ## HDAC6 score inference by NetBID
-We used the gene level expression data to calculate the HDAC6 score with the function of "cal.Activity" from NetBID. The HDAC6 score was calculated through all datasets, including cell lines, mouse models, primary cancer patiens (TCGA and METABRIC), inflamatory breast cancers, clinical trial samples and the integaratd human breast cancer transcriptomics data.
+We used the gene level expression data to calculate the HDAC6 score with the function of "cal.Activity" from NetBID. The HDAC6 score was calculated through all datasets, including cell lines, mouse models, primary cancer patients (TCGA and METABRIC), inflammatory breast cancers, clinical trial samples and the integaratd human breast cancer transcriptomics data.
 * See scripts: 06.HDAC6_score_inference_by_NetBID/\*.R
 
 ## HDAC6 score inference by VIPER
-We evaluated the HDAC6 relative protein activity based on the new HDAC6 breast cancer regulon with the VIPER algorithm, a powerful tool which has been aproved by the NYS Department of Health CLIA/CLEP Validatioin Unit. The VIPER-based HDAC6 score ROC analysis was performed by Darwin Health Inc (https://www.darwinhealth.com/).
+We evaluated the HDAC6 relative protein activity based on the new HDAC6 breast cancer regulon with the VIPER algorithm, a powerful tool which has been approved by the NYS Department of Health CLIA/CLEP Validation Unit. The VIPER-based HDAC6 score ROC analysis was performed by Darwin Health Inc (https://www.darwinhealth.com/).
 
 ## Correlative analysis of HDAC6 score in breast cancer cell lines
-We used ggplot2 to draw the correlaton scatter plot and do the curve fitting between HDAC6 and IC50 among cell lines.
+We used ggplot2 to draw the correlation scatter plot and do the curve fitting between HDAC6 and IC50 among cell lines.
 * See script: 08.Correlative_analysis_of_HDAC6_score_in_breast_cancer_cell_lines.R
 
 ## HDAC6 score distribution across contexts
-We used ggplot2 to visulize the distribution of HDAC6 score in each context. The two-tailed p-values were calculated by limma.
+We used ggplot2 to visualize the distribution of the HDAC6 score in each context. The two-tailed p-values were calculated by limma.
 * See scripts: 09.HDAC6_score_distribution_accross_contexts/\*.R
 
 ## Overlaps of cancer type–specific HDAC6 regulons
@@ -46,7 +46,7 @@ We used the lubridate package to calculate the PFS from the dates of trial assig
 * See script: 11.PFS_analysis_against_HDAC6_score_in_the_clinical_trial.R
 
 ## Receiver operating characteristic (ROC) curve analysis of HDAC6 score in the clinical trial
-We introduced the ROC curve analysis to evaluate the performance of HDAC6 score in predicting clinical response of patients. It was performed by using the R package pROC. 
+We introduced the ROC curve analysis to evaluate the performance of the HDAC6 score in predicting clinical response of patients. It was performed by using the R package pROC. 
 * See script: 12.ROC_curve_analysis_of_HDAC6_score_in_the_clinical_trial.R
 
 ## References
